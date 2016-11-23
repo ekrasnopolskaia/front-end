@@ -15,3 +15,19 @@ angular.module('todoManagerApp')
       'Karma'
     ];
   });
+angular.module('todoManagerApp')
+  .directive('todos', function() {
+    return {
+      templateUrl: 'views/index.html',
+      controller: 'TodosCtrl',
+      controllerAs: 'ctrl',
+      restrict: 'EA'
+    };
+  });
+angular.module('todoManagerApp')
+  .constant('todoStates', {
+    pending: 0,
+    done: 1
+  });
+
+

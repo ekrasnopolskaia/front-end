@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todos</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="todolist not-done">
+                <hl>Todos</hl><br>
+                <input type="text" class="form-control add-todo" placeholder="Введите текст задания..."
+                       ng-model="ctrl.newTodo.text">
+                <input type="text" class="form-control" ng-model="ctrl.newTodo.toOate" name="date" data-date-format="dd.mm.yyyy"
+                       bs-datepicker>
+                <button class="btn btn-success" ng-click="ctrl.addTodo()">Добавить</button>
+                <hr>
+                <h2>Нужно сделать:</h2>
+                <todo ng-repeat="todo in ctrl.todos | filter:{state:ctrl.todoStates.pending}" todo="todo" on-delete="ctrl.onTodoDelete(todo)"></todo>
+                <hr>
+                <div class="row">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>
+                                {{ctrl.todos.text}}
+                            </td>
+                            <td>
+                                {{ctrl.todo.toDate | 'dd.mm.yyyy'}}
+                            </td>
+                            <td ng-hide="ctrl.todo.state == ctrl.todoStates.done">
+                                <button type="button" class="btn btn-danger btn-xs” ng-click="ctrl.delete()”>Delete</button>
+                            </td>
+                            <td ng-hide="ctrl.todo.state == ctrl.todoStates.done">
+                                <button type="button"	class="btn btn-success btn-xs" ng-click="ctrl.done()">Done</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <h2>Сделано:</h2>
+                <todo ng-repeat="todo in ctrl.todos | filter:{state:ctrl.todoStates.done}" todo="todo"></todo>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
